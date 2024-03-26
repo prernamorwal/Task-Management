@@ -117,7 +117,8 @@ const Login = ({ setLoggedInUser }) => {
 
           <div className="col text-center">
             <h5>
-              If you do not have an account <Link to="/register">Register</Link>
+              If you do not have an account{" "}
+              <Link to="/Task-Management/register">Register</Link>
             </h5>
           </div>
         </div>

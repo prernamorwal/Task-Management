@@ -24,7 +24,7 @@ const Logout = () => {
   localStorage.removeItem("loggedInUser");
 
   // Redirect the user to the admin login page
-  return <Navigate to="/login" replace />;
+  return <Navigate to="/Task-Management/login" replace />;
 };
 
 const App = () => {
@@ -51,7 +51,7 @@ const App = () => {
         {error && <p>Error: {error}</p>}
         <Routes>
           <Route
-            path="/"
+            path="/Task-Management/"
             element={
               loggedInUser ? (
                 <UserDashboard loggedInUser={loggedInUser} />
@@ -60,9 +60,9 @@ const App = () => {
               )
             }
           />
-          <Route path="/register" element={<Registration />} />
+          <Route path="/Task-Management/register" element={<Registration />} />
           <Route
-            path="/login"
+            path="/Task-Management/login"
             element={<Login setLoggedInUser={setLoggedInUser} />}
           />
           <Route
