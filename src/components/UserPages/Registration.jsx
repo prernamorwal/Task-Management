@@ -80,7 +80,7 @@ const Registration = () => {
     });
 
     setTimeout(() => {
-      window.location.href = "/Task-Management/";
+      window.location.href = "/Task-Management/login";
     }, 2000);
   };
 
