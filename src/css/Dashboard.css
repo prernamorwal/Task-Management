@@ -1,0 +1,78 @@
+/* Custom styles for the datepicker */
+.react-datepicker {
+  font-size: 15px; /* Increase font size */
+  background-color: #5a189a; /* Change background color */
+  color: white; /* Change text color */
+  border-radius: 25px;
+}
+
+/* Custom styles for the calendar container */
+.react-datepicker__calendar-container {
+  /* Your custom styles here */
+  background-color: #5a189a !important;
+  border-radius: 10px;
+  box-shadow: 0 2;
+
+}
+
+/* Custom styles for the calendar */
+.react-datepicker__calendar {
+  /* Your custom styles here */
+  color: white;
+
+}
+
+/* Custom styles for the calendar header */
+/* Custom styles for the datepicker header */
+.react-datepicker__header {
+  /* Your custom styles here */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+
+/* Custom styles for the calendar navigation */
+.react-datepicker__navigation {
+  /* Your custom styles here */
+}
+
+/* Custom styles for the calendar navigation button */
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+  /* Your custom styles here */
+  
+}
+
+/* Custom styles for the calendar month */
+.react-datepicker__current-month {
+  /* Your custom styles here */
+  color: #5a189a;
+}
+
+/* Custom styles for the calendar weekdays */
+.react-datepicker__day-name
+{
+  color: #5a189a;
+
+}
+.react-datepicker__day {
+  /* Your custom styles here */
+  color: white;
+}
+
+/* Custom styles for the calendar selected day */
+.react-datepicker__day--selected {
+  /* Your custom styles here */
+}
+
+/* Custom styles for the calendar today's date */
+.react-datepicker__day--today {
+  /* Your custom styles here */
+  background-color:  #c8b6ff !important;
+}
+
+/* Custom styles for the calendar day in the past */
+.react-datepicker__day--disabled {
+  /* Your custom styles here */
+  opacity: .3;
+}

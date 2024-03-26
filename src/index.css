@@ -1,0 +1,37 @@
+.sidebar {
+  height: 100vh; /* Make sidebar full height of viewport */
+  overflow-y: auto; /* Add vertical scrollbar if content overflows */
+  position: fixed; /* Make sidebar fixed */
+  top: 0; /* Position at the top of the viewport */
+  left: 0; /* Position at the left edge of the viewport */
+  padding-top: 20px; /* Adjust padding as needed */
+  padding-bottom: 20px; /* Adjust padding as needed */
+  background-color: #f8f9fa; /* Set background color */
+  border-right: 1px solid #dee2e6; /* Add border on the right side */
+  z-index: 1000; /* Ensure sidebar is above other content */
+}
+
+.main-content {
+  margin-left: 240px; /* Adjust margin to accommodate fixed sidebar */
+}
+
+/* Dashboard.css */
+
+#custom-datepicker {
+  width: 500px !important; /* Set the width of the calendar */
+  height: 500px !important; /* Set the height of the calendar */
+}
+
+/* index.css */
+
+body {
+  /* Specify the path to your image */
+  background-image: url('/assets/background1.jpg');
+
+  /* Set background properties */
+  background-size: cover; /* Cover the entire viewport */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center; /* Center the image */
+  /* You can also add other background properties like background-color here */
+}
+

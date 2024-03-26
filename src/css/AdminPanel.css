@@ -1,0 +1,11 @@
+.bg-black {
+  background-color: black;
+}
+
+.white {
+  color: white;
+}
+.nav-link.active {
+  background-color: #5a189a; /* Change to the desired blue color */
+  color: white; /* Text color for the active link */
+}
