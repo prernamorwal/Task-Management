@@ -21,6 +21,12 @@ const ProfileUpdateComponent = ({ loggedInUser }) => {
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
   const handleSave = () => {
+    // Validate phone number
+    if (phoneNumber.length !== 10 || isNaN(phoneNumber)) {
+      alert("Phone number must be exactly 10 digits.");
+      return;
+    }
+
     const usersData = JSON.parse(localStorage.getItem("users"));
 
     const emailExists = usersData.some(
