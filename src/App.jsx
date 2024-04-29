@@ -29,13 +29,11 @@ const Logout = () => {
 };
 
 const App = () => {
-  // State variables for the logged-in user, tasks, and error
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch tasks when the component mounts or when the logged-in user changes
     if (loggedInUser) {
       fetchUserTasks(loggedInUser.email)
         .then((data) => setTasks(data))
@@ -43,7 +41,6 @@ const App = () => {
     }
   }, [loggedInUser]);
 
-  // Replace with your authentication logic
   const isAuthenticated = !!loggedInUser;
 
   return (
@@ -57,7 +54,7 @@ const App = () => {
               loggedInUser ? (
                 <UserDashboard loggedInUser={loggedInUser} />
               ) : (
-                <Login setLoggedInUser={setLoggedInUser} />
+                <Navigate to="/Task-Management/login" replace />
               )
             }
           />
@@ -67,12 +64,12 @@ const App = () => {
             element={<Login setLoggedInUser={setLoggedInUser} />}
           />
           <Route
-            path="/Task-Management/profile-update" // Profile Update Route
+            path="/Task-Management/profile-update"
             element={
               isAuthenticated ? (
                 <ProfileUpdateComponent />
               ) : (
-                <Login setLoggedInUser={setLoggedInUser} />
+                <Navigate to="/Task-Management/login" replace />
               )
             }
           />
@@ -82,16 +79,14 @@ const App = () => {
               isAuthenticated ? (
                 <AddTask loggedInUser={loggedInUser} />
               ) : (
-                <Login setLoggedInUser={setLoggedInUser} />
+                <Navigate to="/Task-Management/login" replace />
               )
             }
           />
-
           <Route
             path="/user/dashboard"
             element={<UserDashboard loggedInUser={loggedInUser} />}
           />
-          {/* Admin Routes */}
 
           <Route path="/admin" element={<AdminSideBarComponent />}>
             <Route path="dashboard" element={<AdminDashboard />} />
@@ -103,14 +98,17 @@ const App = () => {
           </Route>
 
           <Route path="/user" element={<UserSideBarComponent />}>
-            <Route path="dashboard" element={<UserDashboard />} />
+            <Route
+              path="dashboard"
+              element={<UserDashboard loggedInUser={loggedInUser} />}
+            />
             <Route
               path="task"
               element={
                 loggedInUser ? (
                   <UserTasks loggedInUserEmail={loggedInUser.email} />
                 ) : (
-                  <Login setLoggedInUser={setLoggedInUser} />
+                  <Navigate to="/Task-Management/login" replace />
                 )
               }
             />
@@ -121,7 +119,7 @@ const App = () => {
                 isAuthenticated ? (
                   <ProfileUpdateComponent loggedInUser={loggedInUser} />
                 ) : (
-                  <Login setLoggedInUser={setLoggedInUser} />
+                  <Navigate to="/Task-Management/login" replace />
                 )
               }
             />

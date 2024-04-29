@@ -1,38 +1,52 @@
-import React, { useState } from "react";
-import bcrypt from "bcryptjs";
+import React, { useState, useEffect } from "react";
 
 const ProfileUpdateComponent = ({ loggedInUser }) => {
-  // Initialize state variables with user data (if available)
   const [name, setName] = useState(loggedInUser.name);
   const [email, setEmail] = useState(loggedInUser.email);
   const [phoneNumber, setPhoneNumber] = useState(loggedInUser.phoneNumber);
-  const [password, setPassword] = useState(loggedInUser.password);
+  const [tasks, setTasks] = useState(loggedInUser.tasks); // State for tasks
 
-  // Function to handle saving updated profile data
+  useEffect(() => {
+    // Fetch user data from localStorage when the component mounts
+    const userData = JSON.parse(localStorage.getItem("users"));
+    if (userData) {
+      const currentUser = userData.find((user) => user.id === loggedInUser.id);
+      if (currentUser) {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+        setPhoneNumber(currentUser.phoneNumber);
+        setTasks(currentUser.tasks); // Set tasks from the currentUser
+      }
+    }
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
   const handleSave = () => {
-    // Hash the password
-    const hashedPassword = bcrypt.hashSync(password, 10);
+    const usersData = JSON.parse(localStorage.getItem("users"));
 
+    const emailExists = usersData.some(
+      (user) => user.email === email && user.id !== loggedInUser.id
+    );
+
+    if (emailExists) {
+      alert("Email already exists. Please choose a different email.");
+      return;
+    }
+
+    // Create the updated user object with the updated task array
     const updatedUser = {
       ...loggedInUser,
       name: name,
       email: email,
       phoneNumber: phoneNumber,
-      password: hashedPassword, // Store hashed password
+      tasks: tasks, // Include the updated task array
     };
 
-    // Retrieve users data from localStorage
-    const usersData = JSON.parse(localStorage.getItem("users"));
-
-    // Find the index of the user to update
     const userIndex = usersData.findIndex(
       (user) => user.id === loggedInUser.id
     );
 
-    // Update the user in the usersData array
     usersData[userIndex] = updatedUser;
 
-    // Update users data in localStorage
     localStorage.setItem("users", JSON.stringify(usersData));
 
     alert("Profile updated successfully!");
@@ -43,7 +57,6 @@ const ProfileUpdateComponent = ({ loggedInUser }) => {
       <div className="row">
         <div className="col-2">{/* Sidebar */}</div>
         <div className="col-10">
-          {/* Main content */}
           <div className="container">
             <div className="row mt-5">
               <h2 className="fw-bold text-center">Update Profile</h2>
