@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import progress from "/assets/icons8-progress.gif";
 import complete from "/assets/icons8-complete.gif";
 import pending from "/assets/icons8-pending.gif";
-import total from "/assets/icons8-total.gif"; // Import custom CSS file for styling
+import total from "/assets/icons8-total.gif";
 
 const Dashboard = ({ loggedInUser }) => {
   const [totalTasks, setTotalTasks] = useState(0);

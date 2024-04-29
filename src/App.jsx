@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Registration from "./components/UserPages/Registration";
 import Login from "./components/UserPages/UserLogin";
+import ProfileUpdateComponent from "./components/UserPages/ProfileUpdateComponent"; // Import ProfileUpdateComponent
 
 import AddTask from "./components/AdminPages/AddTask";
 import AdminSideBarComponent from "./components/AdminPages/AdminSideBarComponent";
@@ -66,6 +67,16 @@ const App = () => {
             element={<Login setLoggedInUser={setLoggedInUser} />}
           />
           <Route
+            path="/Task-Management/profile-update" // Profile Update Route
+            element={
+              isAuthenticated ? (
+                <ProfileUpdateComponent />
+              ) : (
+                <Login setLoggedInUser={setLoggedInUser} />
+              )
+            }
+          />
+          <Route
             path="/addtask"
             element={
               isAuthenticated ? (
@@ -104,6 +115,16 @@ const App = () => {
               }
             />
             <Route path="logout" element={<Logout />} />
+            <Route
+              path="profile-update"
+              element={
+                isAuthenticated ? (
+                  <ProfileUpdateComponent loggedInUser={loggedInUser} />
+                ) : (
+                  <Login setLoggedInUser={setLoggedInUser} />
+                )
+              }
+            />
           </Route>
         </Routes>
       </div>

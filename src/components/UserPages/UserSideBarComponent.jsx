@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { FaHome, FaTasks, FaSignOutAlt } from "react-icons/fa"; // Import icons
+import { FaHome, FaTasks, FaSignOutAlt, FaUserEdit } from "react-icons/fa"; // Import icons
 import background1 from "/assets/background1.jpg"; // Import the image
 import "../../css/AdminPanel.css";
 
@@ -44,6 +44,19 @@ const UserSideBarComponent = () => {
                   <span className="d-none d-md-inline white">Tasks</span>
                 </Link>
               </li>
+
+              <li className="nav-item mb-3">
+                <Link
+                  to="/user/profile-update"
+                  className={`nav-link ${
+                    location.pathname === "/user/profile-update" ? "active" : ""
+                  }`}
+                >
+                  <FaUserEdit className="white" style={{ fontSize: "25px" }} />{" "}
+                  <span className="d-none d-md-inline white">Profile</span>
+                </Link>
+              </li>
+
               <li className="nav-item mb-3">
                 <Link
                   to="/user/logout"

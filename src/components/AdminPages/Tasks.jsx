@@ -62,7 +62,7 @@ const Tasks = () => {
   };
 
   return (
-    <div className="container " style={{ minHeight: "100vh" }}>
+    <div className="container-fluid " style={{ minHeight: "100vh" }}>
       <div className="row">
         <div className="col-2">{/* Sidepanel */}</div>
         <div className="col-10">

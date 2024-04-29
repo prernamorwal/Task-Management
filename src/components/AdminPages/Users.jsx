@@ -66,13 +66,13 @@ const Users = () => {
           {/* Main content */}
           <div className="container">
             <div className="row mt-5">
-              <h2 className="fw-bold">Users</h2>
               <div className="col-md-6">
+                <h2 className="fw-bold">Users</h2>
                 <h5>No of Users: {filteredUsers.length}</h5>
-              </div>{" "}
+              </div>
               <div className="col-md-6">
                 <select
-                  className="form-control"
+                  className="form-select ms-3"
                   value={selectedOption}
                   onChange={handleSelectChange}
                 >

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import bcrypt from "bcryptjs";
 import signup from "/assets/signup.png";
 
 const Registration = () => {
@@ -7,7 +8,7 @@ const Registration = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    phoneNumber: "", // ISO code will be stored here
+    phoneNumber: "",
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -40,7 +41,7 @@ const Registration = () => {
       setError("Phone number must be exactly 10 digits");
       return;
     }
-    // Password validation using regular expressions
+
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
     if (!passwordRegex.test(password)) {
@@ -57,11 +58,13 @@ const Registration = () => {
       return;
     }
 
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
     const newUser = {
       id: Date.now(),
       name,
       email,
-      password,
+      password: hashedPassword,
       phoneNumber,
       tasks: [],
     };
