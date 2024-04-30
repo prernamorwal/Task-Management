@@ -21,14 +21,14 @@ const Dashboard = ({ loggedInUser }) => {
 
   useEffect(() => {
     // Retrieve user data from local storage based on email
-    const storedUsers = JSON.parse(localStorage.getItem("users")); // Assuming users are stored in local storage under the key "users"
+    const storedUsers = JSON.parse(localStorage.getItem("users"));
     if (storedUsers && loggedInUser && loggedInUser.email) {
       const storedUser = storedUsers.find(
         (user) => user.email === loggedInUser.email
       );
       if (storedUser) {
         // Update state with user data
-        setUserName(storedUser.name); // Set the user's name
+        setUserName(storedUser.name);
         setTotalTasks(storedUser.tasks.length);
         setCompletedTasks(
           storedUser.tasks.filter((task) => task.status === "completed").length
@@ -39,6 +39,18 @@ const Dashboard = ({ loggedInUser }) => {
         setProgressTasks(
           storedUser.tasks.filter((task) => task.status === "progress").length
         );
+
+        // Filter tasks due today
+        const currentDate = new Date();
+        const tasksDueToday = storedUser.tasks.filter((task) => {
+          const dueDate = new Date(task.dueDate);
+          return (
+            dueDate.getDate() === currentDate.getDate() &&
+            dueDate.getMonth() === currentDate.getMonth() &&
+            dueDate.getFullYear() === currentDate.getFullYear()
+          );
+        });
+        setTasksForSelectedDate(tasksDueToday);
       }
     }
 
@@ -47,6 +59,9 @@ const Dashboard = ({ loggedInUser }) => {
     const month = currentDate.toLocaleString("default", { month: "long" });
     const year = currentDate.getFullYear();
     setCurrentMonth(`${month} ${year}`);
+
+    // Set selected date to today's date
+    setSelectedDate(currentDate);
   }, [loggedInUser]);
 
   // Function to handle date selection
